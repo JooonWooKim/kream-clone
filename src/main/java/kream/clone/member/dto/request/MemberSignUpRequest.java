@@ -15,4 +15,9 @@ public class MemberSignUpRequest {
                 .password(encryptedPassword)
                 .build();
     }
+
+    public MemberSignUpRequest(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
 }
