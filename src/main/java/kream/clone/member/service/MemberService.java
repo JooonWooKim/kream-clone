@@ -1,5 +1,7 @@
 package kream.clone.member.service;
 
+import kream.clone.common.exception.ErrorCode;
+import kream.clone.common.exception.KreamException;
 import kream.clone.common.jwt.JwtUtil;
 import kream.clone.member.dto.request.MemberSignUpRequest;
 import kream.clone.member.entity.Member;
@@ -19,9 +21,9 @@ public class MemberService {
 
     @Transactional
     public void signUp(MemberSignUpRequest request){
-//        if(memberRepository.existsByUsername(request.getUsername())){
-//            throw new
-//        }
+        if(memberRepository.existsByUsername(request.getUsername())){
+            throw new KreamException(ErrorCode.ALREADY_EXIST_USERNAME);
+        }
 
         String encryptedPassword = passwordEncoder.encode(request.getPassword());
         Member member = request.toMember(encryptedPassword);
