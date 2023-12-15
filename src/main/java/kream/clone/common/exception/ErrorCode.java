@@ -18,6 +18,9 @@ public enum ErrorCode {
     NOT_FOUND_MEMBER(HttpStatus.NOT_FOUND, "MEMBER_002", "찾을 수 없는 회원입니다."),
     NOT_VALID_PASSWORD(HttpStatus.BAD_REQUEST, "MEMBER_003", "비밀번호를 다시 확인해주세요."),
     ALREADY_EXIST_USERNAME(HttpStatus.BAD_REQUEST, "MEMBER_004", "이미 존재하는 회원 아이디입니다."),
+
+    NOT_FOUND_BRAND(HttpStatus.NOT_FOUND, "BRAND_002", "찾을 수 없는 브랜드입니다."),
+    ALREADY_EXIST_BRANDNAME(HttpStatus.NOT_FOUND, "BRAND_004", "이미 존재하는 브랜드 이름입니다."),
     ;
     private final HttpStatus httpStatus;
     private final String error;
