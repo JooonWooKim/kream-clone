@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import kream.clone.brand.dto.request.BrandUpdateRequest;
+import kream.clone.brand.dto.response.BrandInfo;
 import kream.clone.common.time.Timestamped;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -31,5 +33,20 @@ public class Brand extends Timestamped {
         this.brandName = brandName;
         this.originImagePath = originImagePath;
         this.thumbnailImagePath = thumbnailImagePath;
+    }
+
+    public void update(BrandUpdateRequest request){
+        this.brandName = request.getName();
+        this.originImagePath = request.getOriginImagePath();
+        this.thumbnailImagePath = request.getThumbnailImagePath();
+    }
+
+    public BrandInfo toBrandInfo() {
+        return BrandInfo.builder()
+                .id(this.id)
+                .brandName(this.brandName)
+                .originImagePath(this.originImagePath)
+                .thumbnailImagePath(this.thumbnailImagePath)
+                .build();
     }
 }
