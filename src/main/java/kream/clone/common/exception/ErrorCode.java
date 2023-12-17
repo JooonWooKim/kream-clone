@@ -20,7 +20,8 @@ public enum ErrorCode {
     ALREADY_EXIST_USERNAME(HttpStatus.BAD_REQUEST, "MEMBER_004", "이미 존재하는 회원 아이디입니다."),
 
     NOT_FOUND_BRAND(HttpStatus.NOT_FOUND, "BRAND_002", "찾을 수 없는 브랜드입니다."),
-    ALREADY_EXIST_BRANDNAME(HttpStatus.NOT_FOUND, "BRAND_004", "이미 존재하는 브랜드 이름입니다."),
+    ALREADY_EXIST_BRANDNAME(HttpStatus.CONFLICT, "BRAND_004", "이미 존재하는 브랜드 이름입니다."),
+    DUPLICATED_PRODUCT(HttpStatus.CONFLICT, "PRODUCT_001", "이미 존재하는 상품입니다."),
     ;
     private final HttpStatus httpStatus;
     private final String error;

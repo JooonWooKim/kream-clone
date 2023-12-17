@@ -40,6 +40,7 @@ public class WebSecurityConfig {
         http.authorizeRequests().
                 requestMatchers(HttpMethod.POST,"/api/auth/**").permitAll().
                 requestMatchers(HttpMethod.POST,"/api/brand/**").permitAll().
+                requestMatchers(HttpMethod.POST,"/api/product/**").permitAll().
                 anyRequest().authenticated().
                 and().
                 addFilterBefore(new JwtAuthenticationFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)

@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 import kream.clone.brand.entity.Brand;
 import kream.clone.common.time.Timestamped;
 import kream.clone.product.dto.request.ProductCreateRequest;
+import kream.clone.product.entity.enums.Currency;
 import kream.clone.product.entity.enums.SizeClassification;
 import kream.clone.product.entity.enums.SizeUnit;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Currency;
 
 @Entity
 @Getter
@@ -23,7 +23,7 @@ public class Product extends Timestamped {
     private Long id;
     private String name;
     @Column(unique = true)
-    private String moduleNumber;
+    private String modelNumber;
     private String color;
     private LocalDate releaseDate;
     private Long releasePrice;
@@ -46,7 +46,21 @@ public class Product extends Timestamped {
 
     public static Product createProduct(ProductCreateRequest request, Brand savedBrand){
         return Product.builder()
-                .name(request.)
+                .name(request.getName())
+                .modelNumber(request.getModelNumber())
+                .color(request.getColor())
+                .releaseDate(request.getReleaseDate())
+                .releasePrice(request.getReleasePrice())
+                .currency(request.getCurrency())
+                .sizeClassification(request.getSizeClassification())
+                .sizeUnit(request.getSizeUnit())
+                .minSize(request.getMinSize())
+                .maxSize(request.getMaxSize())
+                .sizeGap(request.getSizeGap())
+                .originImagePath(request.getOriginImagePath())
+                .thumbnailImagePath(request.getThumbnailImagePath())
+                .resizedImagePath(request.getResizedImagePath())
+                .brand(savedBrand)
                 .build();
     }
 }
