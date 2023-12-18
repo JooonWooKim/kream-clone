@@ -8,7 +8,6 @@ import kream.clone.member.dto.request.MemberSignUpRequest;
 import kream.clone.member.entity.Member;
 import kream.clone.member.fixture.MemberFixture;
 import kream.clone.member.repository.MemberRepository;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
