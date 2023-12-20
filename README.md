@@ -1,4 +1,4 @@
-# traveler-backend
+# kream-clone
 ## 💻 clean commit
 - 제목의 길이는 최대 48글자까지 한글로 간단 명료하게 작성
 - 제목을 작성하고 반드시 빈 줄 한 줄을 만들어야 함.
