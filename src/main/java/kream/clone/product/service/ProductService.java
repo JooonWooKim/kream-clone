@@ -25,12 +25,19 @@ public class ProductService {
     @Transactional
     public void createProduct(ProductCreateRequest request) {
         Brand savedBrand = validatedBrandExists(request);
-        isExistsProduct(request.getName(), request.getModelNumber());
+        isExistsProductName(request.getName());
+        isExistsProductModelNumber(request.getModelNumber());
         productRepository.save(Product.createProduct(request, savedBrand));
     }
 
-    private void isExistsProduct(String name, String modelNumber) {
-        if(productRepository.existsByNameAndModelNumber(name, modelNumber)){
+    private void isExistsProductName(String name) {
+        if(productRepository.existsByName(name)){
+            throw new KreamException(ErrorCode.DUPLICATED_PRODUCT);
+        }
+    }
+
+    private void isExistsProductModelNumber(String modelNumber) {
+        if(productRepository.existsByModelNumber(modelNumber)){
             throw new KreamException(ErrorCode.DUPLICATED_PRODUCT);
         }
     }
@@ -53,7 +60,8 @@ public class ProductService {
     private void checkDuplicatedUpdateProduct(ProductUpdateRequest request, Product saveProduct) {
         if(!request.getName().equals(saveProduct.getName()) &&
         !request.getModelNumber().equals(saveProduct.getModelNumber())){
-            isExistsProduct(request.getName(), request.getModelNumber());
+            isExistsProductName(request.getName());
+            isExistsProductModelNumber(request.getModelNumber());
         }
     }
 

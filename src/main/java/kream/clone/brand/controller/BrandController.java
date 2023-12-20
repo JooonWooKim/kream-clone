@@ -73,6 +73,4 @@ public class BrandController {
         List<BrandInfo> brandInfo = brandService.getBrandsInfo();
         return new ResponseEntity<>(new SuccessMessage<>("브랜드정보리스트조회성공", brandInfo), HttpStatus.OK);
     }
-
-
 }
