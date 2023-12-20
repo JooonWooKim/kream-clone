@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import kream.clone.brand.entity.Brand;
 import kream.clone.common.time.Timestamped;
 import kream.clone.product.dto.request.ProductCreateRequest;
+import kream.clone.product.dto.request.ProductUpdateRequest;
 import kream.clone.product.entity.enums.Currency;
 import kream.clone.product.entity.enums.SizeClassification;
 import kream.clone.product.entity.enums.SizeUnit;
@@ -62,5 +63,22 @@ public class Product extends Timestamped {
                 .resizedImagePath(request.getResizedImagePath())
                 .brand(savedBrand)
                 .build();
+    }
+
+    public void update(ProductUpdateRequest request) {
+        this.name = request.getName();
+        this.modelNumber = request.getModelNumber();
+        this.color = request.getColor();
+        this.releaseDate = request.getReleaseDate();
+        this.releasePrice = request.getReleasePrice();
+        this.currency = request.getCurrency();
+        this.sizeClassification = request.getSizeClassification();
+        this.sizeUnit = request.getSizeUnit();
+        this.minSize = request.getMinSize();
+        this.maxSize = request.getMaxSize();
+        this.sizeGap = request.getSizeGap();
+        this.originImagePath = request.getOriginImagePath();
+        this.thumbnailImagePath = request.getThumbnailImagePath();
+        this.resizedImagePath = request.getResizedImagePath();
     }
 }
