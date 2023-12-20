@@ -5,6 +5,7 @@ import kream.clone.brand.entity.Brand;
 import kream.clone.common.time.Timestamped;
 import kream.clone.product.dto.request.ProductCreateRequest;
 import kream.clone.product.dto.request.ProductUpdateRequest;
+import kream.clone.product.dto.response.ProductInfo;
 import kream.clone.product.entity.enums.Currency;
 import kream.clone.product.entity.enums.SizeClassification;
 import kream.clone.product.entity.enums.SizeUnit;
@@ -80,5 +81,25 @@ public class Product extends Timestamped {
         this.originImagePath = request.getOriginImagePath();
         this.thumbnailImagePath = request.getThumbnailImagePath();
         this.resizedImagePath = request.getResizedImagePath();
+    }
+
+    public ProductInfo toProductInfo() {
+        return ProductInfo.builder()
+                .id(this.id)
+                .name(this.name)
+                .modelNumber(this.modelNumber)
+                .color(this.color)
+                .releaseDate(this.releaseDate)
+                .releasePrice(this.releasePrice)
+                .currency(this.currency)
+                .sizeClassification(this.sizeClassification)
+                .sizeUnit(this.sizeUnit)
+                .minSize(this.minSize)
+                .maxSize(this.maxSize)
+                .sizeGap(this.sizeGap)
+                .originImagePath(this.originImagePath)
+                .thumbnailImagePath(this.thumbnailImagePath)
+                .resizedImagePath(this.resizedImagePath)
+                .build();
     }
 }
