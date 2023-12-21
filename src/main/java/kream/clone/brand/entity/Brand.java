@@ -1,9 +1,6 @@
 package kream.clone.brand.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import kream.clone.brand.dto.request.BrandUpdateRequest;
 import kream.clone.brand.dto.response.BrandInfo;
 import kream.clone.common.time.Timestamped;
@@ -21,6 +18,7 @@ public class Brand extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String brandName;
 
     private String originImagePath;

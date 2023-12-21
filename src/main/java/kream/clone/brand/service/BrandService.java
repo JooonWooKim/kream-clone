@@ -42,7 +42,7 @@ public class BrandService {
     public void deleteBrand(Long brandId) {
         Brand deleteBrand = brandRepository.findById(brandId).orElseThrow(() -> new
                 KreamException(ErrorCode.NOT_FOUND_BRAND));
-        brandRepository.deleteById(brandId);
+        brandRepository.delete(deleteBrand);
     }
 
     public BrandInfo getBrandInfo(Long brandId) {

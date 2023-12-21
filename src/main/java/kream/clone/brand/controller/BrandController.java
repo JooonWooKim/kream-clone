@@ -66,7 +66,7 @@ public class BrandController {
     /**
      * 브랜드 정보 리스트 조회
      * @param
-     * @return BrandInfo
+     * @return BrandsInfo
      */
     @GetMapping("")
     public ResponseEntity<SuccessMessage<List<BrandInfo>>> getBrandsInfo(){
