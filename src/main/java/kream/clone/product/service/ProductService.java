@@ -15,6 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static kream.clone.common.exception.ErrorCode.DUPLICATED_PRODUCT;
+import static kream.clone.common.exception.ErrorCode.NOT_FOUND_PRODUCT;
+
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -30,27 +33,27 @@ public class ProductService {
         productRepository.save(Product.createProduct(request, savedBrand));
     }
 
-    private void isExistsProductName(String name) {
+    public void isExistsProductName(String name) {
         if(productRepository.existsByName(name)){
-            throw new KreamException(ErrorCode.DUPLICATED_PRODUCT);
+            throw new KreamException(DUPLICATED_PRODUCT);
         }
     }
 
-    private void isExistsProductModelNumber(String modelNumber) {
+    public void isExistsProductModelNumber(String modelNumber) {
         if(productRepository.existsByModelNumber(modelNumber)){
-            throw new KreamException(ErrorCode.DUPLICATED_PRODUCT);
+            throw new KreamException(DUPLICATED_PRODUCT);
         }
     }
 
-    private Brand validatedBrandExists(ProductCreateRequest request) {
+    public Brand validatedBrandExists(ProductCreateRequest request) {
         return brandRepository.findById(request.getBrandId())
-                .orElseThrow(() -> new KreamException(ErrorCode.NOT_FOUND_PRODUCT));
+                .orElseThrow(() -> new KreamException(NOT_FOUND_PRODUCT));
     }
 
     @Transactional
     public void updateProductInfo(Long productId, ProductUpdateRequest request) {
         Product saveProduct = productRepository.findById(productId).orElseThrow(()-> new
-                KreamException(ErrorCode.NOT_FOUND_PRODUCT));
+                KreamException(NOT_FOUND_PRODUCT));
 
         checkDuplicatedUpdateProduct(request, saveProduct);
 
@@ -67,14 +70,14 @@ public class ProductService {
 
     public void deleteProduct(Long productId) {
         Product deleteProduct = productRepository.findById(productId).orElseThrow(()->
-                new KreamException(ErrorCode.NOT_FOUND_PRODUCT));
+                new KreamException(NOT_FOUND_PRODUCT));
         productRepository.delete(deleteProduct);
     }
 
     @Transactional(readOnly = true)
     public ProductInfo getProductInfo(Long productId) {
         return productRepository.findById(productId)
-                .orElseThrow(()-> new KreamException(ErrorCode.NOT_FOUND_PRODUCT))
+                .orElseThrow(()-> new KreamException(NOT_FOUND_PRODUCT))
                 .toProductInfo();
     }
 

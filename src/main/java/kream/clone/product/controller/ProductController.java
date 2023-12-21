@@ -1,11 +1,10 @@
 package kream.clone.product.controller;
 
 import jakarta.validation.Valid;
-import kream.clone.brand.dto.response.BrandInfo;
 import kream.clone.common.response.SuccessMessage;
-import kream.clone.product.dto.response.ProductInfo;
 import kream.clone.product.dto.request.ProductCreateRequest;
 import kream.clone.product.dto.request.ProductUpdateRequest;
+import kream.clone.product.dto.response.ProductInfo;
 import kream.clone.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
