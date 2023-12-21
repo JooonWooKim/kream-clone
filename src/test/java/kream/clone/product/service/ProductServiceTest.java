@@ -11,6 +11,7 @@ import kream.clone.product.dto.response.ProductInfo;
 import kream.clone.product.entity.Product;
 import kream.clone.product.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -18,6 +19,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.Optional;
 
 import static kream.clone.brand.fixture.BrandFixture.BRANDNAME;
@@ -147,6 +149,26 @@ public class ProductServiceTest {
 
         //when
         assertThatThrownBy(()-> productService.deleteProduct(PRODUCTID))
+                .isInstanceOf(KreamException.class);
+    }
+    @Test
+    public void 정상_단건_제품_조회_성공(){
+        //given
+        when(productRepository.findById(anyLong())).thenReturn(Optional.of(product));
+
+        //when
+        ProductInfo productInfo = productService.getProductInfo(product.getId());
+
+        //then
+        assertThat(productInfo.getId()).isEqualTo(1L);
+    }
+    @Test
+    public void 오류_단건_제품_조회_없는_상품명(){
+        //given
+        when(productRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+        //when
+        assertThatThrownBy(()-> productService.getProductInfo(PRODUCTID))
                 .isInstanceOf(KreamException.class);
     }
 }
